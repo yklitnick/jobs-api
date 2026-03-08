@@ -31,6 +31,7 @@ app.use(
     rateLimiter({
         windowMs: 15 * 60 * 1000, // 15 minutes
         limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+        skip: (req) => req.path.startsWith('/api-docs'),
     }),
 );
 app.use(express.json());
